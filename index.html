@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Faiqah's Biodata</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playwrite+AU+QLD:wght@100..400&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .typing-container {
+     background-color: rgba(0, 0, 0, 0.6);
+     color: white;
+     padding: 20px;
+     border-radius: 10px;
+     max-width: 800px;
+     margin: 40px auto;
+     font-size: 16px;
+      line-height: 1.6;
+      font-family: 'Playwrite AU QLD', cursive;
+      text-align: justify;
+}
+
+
+    body {
+      font-family: 'Playwrite AU QLD', cursive;
+      background-image: url('paperwall.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: white;
+    }
+
+ #loader {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background-color: #1c1c1c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      color: white;
+      font-family: 'Playwrite AU QLD', cursive;
+    }
+
+.spinner {
+      border: 6px solid #f3f3f3;
+      border-top: 6px solid #FDFD95;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+    }
+
+ #loader-text {
+      font-size: 22px;
+      color: #FDFD95;
+      letter-spacing: 1px;
+    }
+      
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .profile-pic {
+      position: relative;
+      display: inline-block;
+      width: 300px;
+      height: auto;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .profile-pic img {
+      width: 100%;
+      display: block;
+      border-radius: 20px;
+    }
+
+    .profile-pic .hover-quote {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(10, 10, 10, 0.7);
+      color: #fff;
+      font-family: 'Georgia', serif;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      padding: 20px;
+      border-radius: 20px;
+    }
+
+    .profile-pic:hover .hover-quote {
+      opacity: 1;
+    }
+      
+
+     .dice-of-fate {
+     text-align: center;
+     font-family: 'Courier New', monospace;
+     padding: 30px;
+    }
+
+    .dice-img {
+      width: 100px;
+      height: 100px;
+      cursor: pointer;
+     transition: transform 0.8s ease;
+}
+
+    .dice-img.spin {
+      transform: rotate(1080deg);
+}
+
+    #fate-result {
+      margin-top: 15px;
+      font-size: 1.1rem;
+      color: #ff99cc;
+      margin-left: -10px;
+      text-align: center; 
+}
+
+
+      
+     .video-container {
+     max-width: 3000px; /* Adjust as needed */
+     width: 100%;
+     margin: 0 auto;
+     position: relative;
+     padding-bottom: 56.25%; /* 16:9 aspect ratio */
+     height: 0;
+     overflow: hidden;
+     border-radius: 10px;
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+    
+    .video-container iframe {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     border: none;
+}
+
+      
+ /* Fade-in Animation CSS */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+
+    }
+        
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    .header-container {
+      position: relative;
+      width: 100%;
+      height: 250px;
+      overflow: hidden;
+    }
+
+    .header-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .header-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: white;
+    }
+
+    .header-text h1 {
+      font-size: 36px;
+      margin: 0;
+    }
+
+    .header-text p {
+      font-size: 18px;
+      margin-top: 110px;
+    }
+
+    .footer {
+      background-color: #800000;
+      padding: 10px;
+      color: white;
+    }
+
+    p {
+      text-indent: 80px;
+    }
+
+    h1, h2, h3 {
+      color: #FDFD95;
+    }
+
+    .section {
+      padding: 60px;
+    }
+
+    .divider {
+      height: 3px;
+      background-color: #FDFD95;
+      width: 90%;
+      margin: 60px auto;
+    }
+
+    .flex-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+
+    .biodata {
+      flex: 1;
+      min-width: 280px;
+      font-size: 16px;
+    }
+
+    .biodata p {
+      text-indent: 0;
+      margin-bottom: 10px;
+    }
+
+    .profile-pic {
+      flex: 1;
+      max-width: 300px;
+      text-align: center;
+    }
+
+    .profile-pic img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+
+    .slideshow-container {
+      width: 100%;
+      max-width: 600px;
+      margin: 30px auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mySlides {
+      display: none;
+      position: absolute;
+      width: 100%;
+      height: auto;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .mySlides.active {
+      display: block;
+      opacity: 1;
+      position: relative;
+    }
+
+    .mySlides img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+
+    .socials {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 30px;
+      text-align: center;
+    }
+
+    .socials img {
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      cursor: pointer;
+    }
+
+    .socials-item {
+      flex: 1 1 150px;
+    }
+
+    .songs-horizontal {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .songs-horizontal iframe {
+      border-radius: 11px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 30px;
+      color: #FDFD95;
+    }
+  </style>
+</head>
+
+<body>
+
+  <table>
+    <tbody>
+      <tr>
+        <td colspan="2">
+          <div class="header-container">
+            <img src="header.jpg" alt="header photo">
+            <div class="header-text">
+              <h1> ˚౨Biodata of an Eclectic Readerৎ˚  </h1>
+              <p><strong>°❀⋆.ೃ࿔*:･Welcome to Faiqah's Website!:ִֶָ. ..𓂃 ࣪ ִֶָ🪽་༘࿐･</strong></p>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          <img src="border.png" alt="Gold Border" style="width: 100vw; height: 20px; object-fit: cover; display: block;">
+        </td>
+      </tr>
+
+      <tr height="120px">
+        <td colspan="2">
+          <center>
+            <img src="alki.png" style="height: 140px; margin-top: 20px;" alt="SMPIT Al Haraki Logo">
+          </center>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2" class="section">
+          <h2 class="section-title fade-in">๋ ⭑꒷꒦︶꒷꒦︶ About Me ꒷꒦︶꒷꒦︶⭑๋</h2>
+
+          <div class="flex-row">
+            <!-- Biodata on the left -->
+            <div class="biodata fade-in">
+              <p><strong>Name</strong>: N.Faiqah Wiandi Utomo</p>
+              <p><strong>Born</strong>: Jakarta, 11 January 2011</p>
+              <p><strong>Number</strong>: 0866-331-9474</p>
+              <p><strong>Address</strong>: Depok</p>
+              <p><strong>Email</strong>: nadya.faiqah@alharaki.sch.id</p>
+              <p><strong>Hobby</strong>: Reading, Writing, Designing</p>
+              <p><strong>Dream Job</strong>: Unemployment, but disgustingly rich</p>
+              <p><strong>Grade & Class</strong>: 9 An-Nasr</p>
+              <p><strong>Favourite Subject</strong>: Biology, ICT</p>
+              <p><strong>Personality Traits</strong>: Sarcastic, Light-hearted, Selectively Social</p>
+              <p><strong>MBTI</strong>: INTJ</p>
+            </div>
+
+              
+            <!-- Profile Photo on the right -->
+            <div class="profile-pic fade-in">
+                 <img src="profile.png" alt="Faiqah's Profile Photo">
+                 <div class="hover-quote">superman enjoys eating metal and kryptonite with salt</div>
+            </div>
+            </div>
+
+            <div class="dice-of-fate">
+                 <h3>🎲 Roll the Dice of Fate</h3>
+                 <img src="dice.png" alt="Dice" class="dice-img" onclick="rollFate()">
+             <p <strong id="fate-result">Click the dice to decide your destiny..... </strong> </p>
+            </div>
+
+            
+ <!-- Slideshow BELOW 'About Me' text, ABOVE 'hello my name is faiqah' paragraph -->
+  <div class="slideshow-container" id="slideshow">
+    <div class="mySlides active">
+      <img src="img1.png" alt="Slideshow Image 1">
+    </div>
+    <div class="mySlides">
+      <img src="img2.png" alt="Slideshow Image 2">
+    </div>
+    <div class="mySlides">
+      <img src="img3.png" alt="Slideshow Image 3">
+    </div>
+    <div class="mySlides">
+      <img src="img4.png" alt="Slideshow Image 4">
+    </div>
+    <div class="mySlides">
+      <img src="img5.png" alt="Slideshow Image 5">
+    </div>
+    <div class="mySlides">
+      <img src="img6.png" alt="Slideshow Image 6">
+    </div>
+    <div class="mySlides">
+      <img src="img7.png" alt="Slideshow Image 7">
+    </div>
+    <div class="mySlides">
+      <img src="img8.png" alt="Slideshow Image 8">
+    </div>
+    <div class="mySlides">
+      <img src="img9.png" alt="Slideshow Image 9">
+    </div>
+    <div class="mySlides">
+      <img src="img10.png" alt="Slideshow Image 10">
+    </div>
+    <div class="mySlides">
+      <img src="img11.png" alt="Slideshow Image 11">
+    </div>
+    <div class="mySlides">
+      <img src="img12.png" alt="Slideshow Image 12">
+    </div>
+  </div>
+
+ <!-- dk what this part here does but im too scared to delete it -->
+
+            
+          <div class="divider"></div>
+
+          <div style="margin-top: 20px; text-align: justify;">
+              
+           <div class="typing-container fade-in">
+             <p class="typing-text" id="aboutTyping"><strong></strong></p>
+            </div>
+
+          </div>
+        </td>
+      </tr>
+
+      <!-- Socials Section -->
+      <tr>
+        <td colspan="2" class="section fade-in">
+          <h2 class="section-title">☁️🌐 My Socials 🌐☁️</h2>
+          <div class="socials">
+            <div class="socials-item">
+              <a href="https://www.instagram.com/p/C3Hc-Kqv0jd/?utm_source=ig_web_copy_link" target="_blank">
+                <img src="instagram.png" alt="Instagram" style="width: 130px;">
+              </a>
+              <p>Visit my Instagram!</p>
+            </div>
+            <div class="socials-item">
+              <a href="https://t.me/RKVKcanon" target="_blank">
+                <img src="tele.png" alt="Telegram" style="width: 130px;">
+              </a>
+              <p>Chat on Telegram!</p>
+            </div>
+            <div class="socials-item">
+              <a href="https://twitter.com/faiqahww" target="_blank">
+                <img src="x.png" alt="Twitter" style="width: 130px;">
+              </a>
+              <p>Visit my Twitter!</p>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <!-- Songs Section -->
+      <tr>
+        <td colspan="2" class="section fade-in">
+          <h2 class="section-title">🎵 My Favourite Songs 🎵</h2>
+          <div class="songs-horizontal">
+            <iframe src="https://open.spotify.com/embed/track/7nzsY8vlnKdvGOEE0rjAXZ?utm_source=generator&theme=0"
+              width="250" height="152" frameborder="0" allowtransparency="true"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+            <iframe src="https://open.spotify.com/embed/track/3SAga35lAPYdjj3qyfEsCF?utm_source=generator"
+              width="250" height="152" frameborder="0" allowtransparency="true"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+            <iframe src="https://open.spotify.com/embed/track/6dRVOzSxLqRdqUjc9mctGg?utm_source=generator&theme=0"
+              width="250" height="152" frameborder="0" allowtransparency="true"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+            <iframe src="https://open.spotify.com/embed/track/6S2gYweMmT6xygVh5q3QLa?utm_source=generator"
+              width="250" height="152" frameborder="0" allowtransparency="true"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+          </div>
+        </td>
+      </tr>
+
+      <!-- YouTube Section -->
+      <tr>
+        <td colspan="2" class="section fade-in">
+          <h2 class="section-title">⋆˚₊‧₊ 🎥 My Video ‧₊‧˚⋆</h2>
+          <center>
+            <div class="video-container">
+             <iframe 
+              src="https://www.youtube.com/embed/BR0VQ_AITsI?si=x_kMOxBkvo0Fqecj"
+             title="YouTube video player"
+             frameborder="0"
+             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+             allowfullscreen>
+            </iframe>
+           </div>
+
+          </center>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <footer class="footer fade-in">
+    <center>&copy; ☆ 2025 N. Faiqah Wiandi Utomo ☆</center>
+  </footer>
+
+   <!-- Slideshow Script -->
+  <script>
+    let slideIndex = 0;
+    const slides = document.getElementsByClassName("mySlides");
+    const slideshowContainer = document.getElementById("slideshow");
+    let interval;
+
+    function showSlide(index) {
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active");
+      }
+      slides[index].classList.add("active");
+    }
+
+    function startSlideshow() {
+      interval = setInterval(() => {
+        slideIndex = (slideIndex + 1) % slides.length;
+        showSlide(slideIndex);
+      }, 1730);
+    }
+
+    function stopSlideshow() {
+      clearInterval(interval);
+    }
+
+    // Start initially
+    showSlide(slideIndex);
+    startSlideshow();
+
+    // Pause on hover
+    slideshowContainer.addEventListener("mouseenter", stopSlideshow);
+    slideshowContainer.addEventListener("mouseleave", startSlideshow);
+  </script>
+
+ <!-- 👇 Fade-in Scroll Script -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+
+
+<!-- ✨ Typing Script: PLACE THIS BEFORE </body> -->
+<script>
+  const aboutText = `Hello to whoever's reading this. My name is Faiqah. As I'm making this website, I'm a student in SMPIT Al-Haraki. I like reading, writing, drawing dresses—mostly creative stuff. I really enjoy watching Netflix series, but I find myself without the time or energy to watch them. I play games, mostly visual novel games. My current favourite is Twisted Wonderland. I watch YouTubers like Kubzscouts, Zyoxxx, ItsFunneh, Justin Han, and Doctor Mike. Though in my free time I mostly read. My favourite genre is adventure fantasy, but I read all kinds of things—novels, light novels, webnovels, graphic novels, novellas, short stories, anthologies, poetry, visual novels, audiobooks, comics, manhwas, manhuas, mangas, and fanfiction. Some of my favourite stories are: Lord of the Mysteries, Trash of The Count’s Family, I'm Not That Kind of Talent, Got Dropped into a Ghost Story, Still Gotta Work Though, 66,666 Years: Advent of the Dark Mage, Perfume: The Story of a Murderer, Your Throne, Time-Limited Genius Dark Knight, The S-Classes That I Raised, The Academy’s Undercover Professor, A Villain’s Will To Live, and more.`;
+
+  let index = 0;
+  const paragraph = document.getElementById("aboutTyping");
+
+  function typeAboutText() {
+    if (index < aboutText.length) {
+      paragraph.textContent += aboutText.charAt(index);
+      index++;
+      setTimeout(typeAboutText, 60); // speed of typing
+    }
+  }
+
+  function isInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return rect.top < window.innerHeight && rect.bottom >= 0;
+  }
+
+  let triggered = false;
+  window.addEventListener("scroll", function () {
+    if (!triggered && isInViewport(paragraph)) {
+      triggered = true;
+      typeAboutText();
+    }
+  });
+</script>
+
+<script>
+    window.addEventListener("load", function () {
+      const loader = document.getElementById("loader");
+      loader.style.opacity = "0";
+      loader.style.pointerEvents = "none";
+      setTimeout(() => {
+        loader.style.display = "none";
+      }, 500);
+    });
+  </script>
+
+
+<script>
+  function rollFate() {
+    const fates = [
+      "😴 a 15 hour nap (very healthy)",
+      "🧑‍🔬 watch the 10th doctor",
+      "📱 doomscroll tiktok",
+      "🍴 ingest metal",
+      "☕ gonorrhea from coffee",
+      "💼 get a j*b",
+      "🐉 watch httyd eternity edits",
+      "🐵 goon",
+      "🪙 play monkeys paw with friend(s)",
+      "🚒 do a firefighter wiggle",
+      "🍜 WOBBILY WIGGLY",
+      "💧 its time to drink water"
+    ];
+
+    const dice = document.querySelector('.dice-img');
+    const resultText = document.getElementById('fate-result');
+
+    // Reset spin animation
+    dice.classList.remove('spin');
+    void dice.offsetWidth; // trick to restart animation
+    dice.classList.add('spin');
+
+    // Wait until spin ends to show result
+    setTimeout(() => {
+      const result = fates[Math.floor(Math.random() * fates.length)];
+      resultText.textContent = result;
+    }, 800); // match spin duration
+  }
+</script>
+
+
+    
+</body>
+</html>
