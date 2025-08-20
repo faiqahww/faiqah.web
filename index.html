@@ -81,10 +81,13 @@
     }
 
     .profile-pic img {
-      width: 100%;
-      display: block;
-      border-radius: 20px;
+     width: 100%;        
+     height: 500px;  
+     object-fit: cover;   
+     border-radius: 10px;
+     box-shadow: 0 4px 12px rgba(0,0,0,0.4);
     }
+
 
     .profile-pic .hover-quote {
       position: absolute;
@@ -254,6 +257,23 @@
       margin-bottom: 10px;
     }
 
+
+    .biodata {
+     display: grid;
+     grid-template-columns: 1fr 1fr; /* 2 columns */
+     gap: 12px;
+    }
+
+    .biodata p {
+     background-color: rgba(0, 0, 0, 0.6);
+     padding: 10px;
+     border-radius: 8px;
+     color: white;
+     text-align: left;
+     min-height: 50px; /* same height for neatness */
+    }
+
+
     .profile-pic {
       flex: 1;
       max-width: 300px;
@@ -377,10 +397,11 @@
               <p><strong>Email</strong>: nadya.faiqah@alharaki.sch.id</p>
               <p><strong>Hobby</strong>: Reading, Writing, Designing</p>
               <p><strong>Dream Job</strong>: Unemployment, but disgustingly rich</p>
-              <p><strong>Grade & Class</strong>: 9 An-Nasr</p>
-              <p><strong>Favourite Subject</strong>: Biology, ICT</p>
+              <p><strong>Grade & Class</strong>: 9th Grade Class An-Nasr "The Victory" or "The Help"</p>
+              <p><strong>Favourite Subject</strong>: Biology, ICT : (Information and Communication Technology)</p>
               <p><strong>Personality Traits</strong>: Sarcastic, Light-hearted, Selectively Social</p>
               <p><strong>MBTI</strong>: INFJ-T</p>
+              <p><strong>Favourite Item</strong>: Money</p>
             </div>
 
               
@@ -391,14 +412,19 @@
             </div>
             </div>
 
+<div class="divider"></div>
+
+            
             <div class="dice-of-fate">
                  <h3>🎲 Roll the Dice of Fate</h3>
                  <img src="dice.png" alt="Dice" class="dice-img" onclick="rollFate()">
              <p <strong id="fate-result">Click the dice to decide your destiny..... </strong> </p>
             </div>
 
+<div class="divider"></div>
+
             
- <!-- Slideshow BELOW 'About Me' text, ABOVE 'hello my name is faiqah' paragraph -->
+ <!-- Slideshow of my novels some manhwas but technically have novels sooooo -->
   <div class="slideshow-container" id="slideshow">
     <div class="mySlides active">
       <img src="img1.png" alt="Slideshow Image 1">
@@ -441,15 +467,13 @@
  <!-- dk what this part here does but im too scared to delete it -->
 
             
-          <div class="divider"></div>
-
-          <div style="margin-top: 20px; text-align: justify;">
-              
-           <div class="typing-container fade-in">
-             <p class="typing-text" id="aboutTyping"><strong></strong></p>
-            </div>
-
+      <div style="margin-top: 20px; text-align: justify;">
+          <div class="typing-container fade-in">
+                 <p class="typing-text" id="aboutTyping1"></p>
+                 <p class="typing-text" id="aboutTyping2"></p>
           </div>
+      </div>
+
         </td>
       </tr>
 
@@ -581,19 +605,34 @@
 
 
 <script>
-  const aboutText = `Hello to whoever's reading this. My name is Faiqah. As I'm making this website, I'm a student in SMPIT Al-Haraki. I like reading, writing, drawing dresses—mostly creative stuff. I really enjoy watching Netflix series, but I find myself without the time or energy to watch them. I play games, mostly visual novel games. My current favourite is Twisted Wonderland. I watch YouTubers like Kubzscouts, Zyoxxx, ItsFunneh, Justin Han, and Doctor Mike. Though in my free time I mostly read. My favourite genre is adventure fantasy, but I read all kinds of things—novels, light novels, webnovels, graphic novels, novellas, short stories, anthologies, poetry, visual novels, audiobooks, comics, manhwas, manhuas, mangas, and fanfiction. Some of my favourite stories are: Lord of the Mysteries, Trash of The Count’s Family, I'm Not That Kind of Talent, I Became a God in a Horror Game, Got Dropped into a Ghost Story, Still Gotta Work Though, 66,666 Years: Advent of the Dark Mage, Perfume: The Story of a Murderer, Your Throne, Time-Limited Genius Dark Knight, The S-Classes That I Raised, The Academy’s Undercover Professor, A Villain’s Will To Live, and more.`;
+  const aboutText1 = `Hello to whoever's reading this. My name is Faiqah. As I'm making this website, I'm a student in SMPIT Al-Haraki. I like reading, writing, drawing dresses—mostly creative stuff. I really enjoy watching Netflix series, but I find myself without the time or energy to watch them. I play games, mostly visual novel games. My current favourite is Twisted Wonderland. I watch YouTubers like Kubzscouts, Zyoxxx, ItsFunneh, Justin Han, and Doctor Mike. Though in my free time I mostly read. My favourite genre is adventure fantasy.`;
 
-  let index = 0;
-  const paragraph = document.getElementById("aboutTyping");
+  const aboutText2 = `I read all kinds of things—novels, light novels, webnovels, graphic novels, novellas, short stories, anthologies, poetry, visual novels, audiobooks, comics, manhwas, manhuas, mangas, and fanfiction. Some of my favourite stories are: Lord of the Mysteries, Trash of The Count’s Family, I'm Not That Kind of Talent, I Became a God in a Horror Game, Got Dropped into a Ghost Story, Still Gotta Work Though, 66,666 Years: Advent of the Dark Mage, Perfume: The Story of a Murderer, Your Throne, Time-Limited Genius Dark Knight, The S-Classes That I Raised, The Academy’s Undercover Professor, A Villain’s Will To Live, and more.`;
 
-  function typeAboutText() {
-    if (index < aboutText.length) {
-      paragraph.textContent += aboutText.charAt(index);
-      index++;
-      setTimeout(typeAboutText, 60); // speed of typing
+  const para1 = document.getElementById("aboutTyping1");
+  const para2 = document.getElementById("aboutTyping2");
+
+  function typeText(text, element, callback) {
+    let i = 0;
+    function typing() {
+      if (i < text.length) {
+        element.textContent += text.charAt(i);
+        i++;
+        setTimeout(typing, 57); // typing speed
+      } else if (callback) {
+        setTimeout(callback, 500); // pause before next
+      }
     }
+    typing();
   }
 
+  function startTyping() {
+    typeText(aboutText1, para1, () => {
+      typeText(aboutText2, para2);
+    });
+  }
+
+  // Trigger typing when first paragraph comes into view
   function isInViewport(el) {
     const rect = el.getBoundingClientRect();
     return rect.top < window.innerHeight && rect.bottom >= 0;
@@ -601,12 +640,13 @@
 
   let triggered = false;
   window.addEventListener("scroll", function () {
-    if (!triggered && isInViewport(paragraph)) {
+    if (!triggered && isInViewport(para1)) {
       triggered = true;
-      typeAboutText();
+      startTyping();
     }
   });
 </script>
+
 
 <script>
     window.addEventListener("load", function () {
