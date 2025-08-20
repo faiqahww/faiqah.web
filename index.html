@@ -137,9 +137,43 @@
       color: #ff99cc;
       margin-left: -10px;
       text-align: center; 
+        }
+
+
+.nav-menu {
+  position: fixed;
+  top: 10px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.5); /* optional */
+  padding: 8px 15px;
+  border-radius: 8px;
+  z-index: 9999;   /* keeps it above all other elements */
 }
 
 
+.nav-menu a {
+  color: #FDFD95;
+  text-decoration: none;
+  margin-left: 15px;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.nav-menu a:hover {
+  color: white;
+}
+
+
+    
+
+
+/* smooth scroll when clicking links */
+html {
+  scroll-behavior: smooth;
+}
+
+
+      
       
      .video-container {
      max-width: 3000px; /* Adjust as needed */
@@ -362,9 +396,19 @@
         <td colspan="2">
           <div class="header-container">
             <img src="header.jpg" alt="header photo">
-            <div class="header-text">
-              <h1> ˚౨Biodata of an Eclectic Readerৎ˚  </h1>
-              <p><strong>°❀⋆.ೃ࿔*:･Welcome to Faiqah's Website!:ִֶָ. ..𓂃 ࣪ ִֶָ🪽་༘࿐･</strong></p>
+             <div class="header-text">
+                 <h1>˚౨Biodata of an Eclectic Readerৎ˚</h1>
+                 <p><strong>°❀⋆.ೃ࿔*:･Welcome to Faiqah's Website!:ִֶָ. ..𓂃 ࣪ ִֶָ🪽་༘࿐･</strong></p>
+            </div>
+            <div>           
+                <nav class="nav-menu">
+                 <a href="#about">About Me</a>
+                 <a href="#socials">Socials</a>
+                 <a href="#songs">Songs</a>
+                 <a href="#videos">Videos</a>
+            </nav>
+
+                
             </div>
           </div>
         </td>
@@ -386,7 +430,7 @@
 
       <tr>
         <td colspan="2" class="section">
-          <h2 class="section-title fade-in">๋ ⭑꒷꒦︶꒷꒦︶ About Me ꒷꒦︶꒷꒦︶⭑๋</h2>
+        <h2 id="about" class="section-title fade-in">๋ ⭑꒷꒦︶꒷꒦︶ About Me ꒷꒦︶꒷꒦︶⭑๋</h2>
 
           <div class="flex-row">
             <div class="biodata fade-in">
@@ -478,9 +522,9 @@
       </tr>
 
       <!-- Socials Section -->
-      <tr>
-        <td colspan="2" class="section fade-in">
-          <h2 class="section-title">☁️🌐 My Socials 🌐☁️</h2>
+     <tr>
+       <td colspan="2" class="section fade-in">
+         <h2 id="socials" class="section-title">☁️🌐 My Socials 🌐☁️</h2>
           <div class="socials">
             <div class="socials-item">
               <a href="https://www.instagram.com/p/C3Hc-Kqv0jd/?utm_source=ig_web_copy_link" target="_blank">
@@ -505,9 +549,9 @@
       </tr>
 
       <!-- Songs Section -->
-      <tr>
-        <td colspan="2" class="section fade-in">
-          <h2 class="section-title">🎵 My Favourite Songs 🎵</h2>
+     <tr>
+       <td colspan="2" class="section fade-in">
+         <h2 id="songs" class="section-title">🎵 My Favourite Songs 🎵</h2>
           <div class="songs-horizontal">
             <iframe src="https://open.spotify.com/embed/track/7nzsY8vlnKdvGOEE0rjAXZ?utm_source=generator&theme=0"
               width="250" height="152" frameborder="0" allowtransparency="true"
@@ -531,7 +575,7 @@
       <!-- YouTube Section -->
       <tr>
         <td colspan="2" class="section fade-in">
-          <h2 class="section-title">⋆˚₊‧₊ 🎥 My Video ‧₊‧˚⋆</h2>
+         <h2 id="videos" class="section-title">⋆˚₊‧₊ 🎥 My Video ‧₊‧˚⋆</h2>
           <center>
             <div class="video-container">
              <iframe 
@@ -680,16 +724,16 @@
     const dice = document.querySelector('.dice-img');
     const resultText = document.getElementById('fate-result');
 
-    // Reset spin animation
+    // Reset spain without the a animation
     dice.classList.remove('spin');
-    void dice.offsetWidth; // trick to restart animation
+    void dice.offsetWidth; // thingy to restart animation
     dice.classList.add('spin');
 
-    // Wait until spin ends to show result
+    // Wait for spin before u get the resultsss
     setTimeout(() => {
       const result = fates[Math.floor(Math.random() * fates.length)];
       resultText.textContent = result;
-    }, 800); // match spin duration
+    }, 800); 
   }
 </script>
 
