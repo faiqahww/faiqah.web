@@ -220,14 +220,17 @@
   display: none;
 }
 
-
+  .highlight {
+      background: rgba(253, 253, 149, 0.8); /* twenty percent transparent yellow aaaa */
+      padding: 8px 16px;
+      border-radius: 12px;
+      display: inline-block;
+    }
 
 /* smooth scroll when clicking links */
 html {
   scroll-behavior: smooth;
 }
-
-
       
       
      .video-container {
@@ -627,7 +630,7 @@ html {
               
         <!-- Toggle twst yt link -->
          <div class="yt-toggle">
-           <div id="yt-toggle-btn" class="yt-box" onclick="toggleYT()" role="button" tabindex="0" aria-pressed="false">
+    <div id="yt-toggle-btn" class="yt-box highlight" onclick="toggleYT()" role="button" tabindex="0" aria-pressed="false">
                   ♫⋆｡♪ ₊˚♬ ﾟ.Twisted Wonderland Dorm Songs.ﾟ♬˚₊♪｡⋆♫
           </div>
          <div id="yt-container" class="yt-hidden" aria-hidden="true"></div>
