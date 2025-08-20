@@ -164,7 +164,62 @@
 }
 
 
-    
+    /* Toggle Box */
+.yt-toggle {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.yt-box {
+  display: inline-block;
+  background-color: #FDFD95;
+  color: black;
+  padding: 15px 25px;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s;
+}
+
+.yt-box:hover {
+  background-color: #ffcc00;
+  transform: scale(1.05);
+}
+
+#yt-container {
+  max-width: 800px;   /* makes it wide */
+  height: 330px;      /* adjust height */
+  margin: 20px auto;
+  border-radius: 12px; /* slightly rounded corners */
+  overflow: hidden;    /* hides overflow */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+#yt-container iframe,
+#yt-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* thumbnail fills without stretching weirdly */
+}
+      
+
+#yt-thumbnail {
+  max-width: 560px;
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  transition: transform 0.3s;
+}
+
+#yt-thumbnail:hover {
+  transform: scale(1.02);
+}
+
+.yt-hidden {
+  display: none;
+}
+
 
 
 /* smooth scroll when clicking links */
@@ -405,7 +460,7 @@ html {
                  <a href="#about">About Me</a>
                  <a href="#socials">Socials</a>
                  <a href="#songs">Songs</a>
-                 <a href="#videos">Videos</a>
+                 <a href="#videos">Video</a>
             </nav>
 
                 
@@ -452,7 +507,7 @@ html {
             <!-- Profile Photo on the right -->
             <div class="profile-pic fade-in">
                  <img src="profile.png" alt="Faiqah's Profile Photo">
-                 <div class="hover-quote">my favourite food is shakshuka! my favourtie colours are maroon, gold, and black</div>
+                 <div class="hover-quote">my favourite food is shakshuka! my favourite colours are maroon, gold, and black</div>
             </div>
             </div>
 
@@ -568,6 +623,16 @@ html {
             <iframe src="https://open.spotify.com/embed/track/6S2gYweMmT6xygVh5q3QLa?utm_source=generator"
               width="250" height="152" frameborder="0" allowtransparency="true"
               allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+              
+        <!-- Toggle twst yt link -->
+         <div class="yt-toggle">
+           <div id="yt-toggle-btn" class="yt-box" onclick="toggleYT()" role="button" tabindex="0" aria-pressed="false">
+                  ♫⋆｡♪ ₊˚♬ ﾟ.Twisted Wonderland Dorm Songs.ﾟ♬˚₊♪｡⋆♫
+          </div>
+         <div id="yt-container" class="yt-hidden" aria-hidden="true"></div>
+       </div>
+              
           </div>
         </td>
       </tr>
@@ -597,7 +662,7 @@ html {
     <center>&copy; ☆ 2025 N. Faiqah Wiandi Utomo ☆</center>
   </footer>
 
-   <!-- Slideshow Script -->
+   <!-- Slideshow that took me 3 hours ahahahaha save me pls -->
   <script>
     let slideIndex = 0;
     const slides = document.getElementsByClassName("mySlides");
@@ -626,7 +691,7 @@ html {
     showSlide(slideIndex);
     startSlideshow();
 
-    // Pause on hover
+    // Pause on hover (use addEventListener("sdkjan", stop slide
     slideshowContainer.addEventListener("mouseenter", stopSlideshow);
     slideshowContainer.addEventListener("mouseleave", startSlideshow);
   </script>
@@ -729,7 +794,7 @@ html {
     void dice.offsetWidth; // thingy to restart animation
     dice.classList.add('spin');
 
-    // Wait for spin before u get the resultsss
+    // Wait for spin before u get the resultsss omg finally we're ENDING
     setTimeout(() => {
       const result = fates[Math.floor(Math.random() * fates.length)];
       resultText.textContent = result;
@@ -738,6 +803,64 @@ html {
 </script>
 
 
+<script>
+  (function () {
+    let ytVisible = false; // tracks whether container is shown
+
+    // expose functions to global so the inline onclick works
+    window.toggleYT = function () {
+      const container = document.getElementById('yt-container');
+      const btn = document.getElementById('yt-toggle-btn');
+
+      if (!ytVisible) {
+        // show thumbnail
+        container.classList.remove('yt-hidden');
+        container.setAttribute('aria-hidden', 'false');
+        container.innerHTML = `
+          <img id="yt-thumbnail"
+               src="https://img.youtube.com/vi/s7ByJIRBRgk/hqdefault.jpg"
+               alt="YouTube Thumbnail"
+               style="width:100%;border-radius:10px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.4);"
+               onclick="loadYT()" />
+        `;
+        btn.setAttribute('aria-pressed', 'true');
+        ytVisible = true;
+      } else {
+        // hide and clear so iframe (if any) is removed and stops playing
+        container.classList.add('yt-hidden');
+        container.setAttribute('aria-hidden', 'true');
+        container.innerHTML = '';
+        btn.setAttribute('aria-pressed', 'false');
+        ytVisible = false;
+      }
+    };
+
+    window.loadYT = function () {
+      const container = document.getElementById('yt-container');
+      // replace thumbnail with iframe (autoplay attempted)
+      container.innerHTML = `
+        <iframe width="560" height="315"
+          src="https://www.youtube.com/embed/s7ByJIRBRgk?start=15&autoplay=1"
+          title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+      `;
+    };
+
+    // accessibility: let Enter / Space toggle the button when focused
+    document.addEventListener('keydown', function (e) {
+      const btn = document.getElementById('yt-toggle-btn');
+      if (!btn) return;
+      if (document.activeElement === btn && (e.key === 'Enter' || e.key === ' ')) {
+        e.preventDefault();
+        toggleYT();
+      }
+    });
+  })();
+</script>
+
+
+    
     
 </body>
 </html>
