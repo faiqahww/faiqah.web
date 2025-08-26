@@ -140,97 +140,254 @@
         }
 
 
-.nav-menu {
-  position: fixed;
-  top: 10px;
-  right: 20px;
-  background: rgba(0, 0, 0, 0.5); /* optional */
-  padding: 8px 15px;
-  border-radius: 8px;
-  z-index: 9999;   /* keeps it above all other elements */
+    .nav-menu {
+      position: fixed;
+      top: 10px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.5); /* optional */
+      padding: 8px 15px;
+      border-radius: 8px;
+      z-index: 9999;   /* keeps it above all other elements */
+        }
+
+
+    .nav-menu a {
+      color: #FDFD95;
+      text-decoration: none;
+      margin-left: 15px;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .nav-menu a:hover {
+      color: white;
+    }
+
+/* Book slideshow */
+.slideshow-container {
+  position: relative;
+  max-width: 400px;
+  margin: 30px auto;
 }
 
-
-.nav-menu a {
-  color: #FDFD95;
-  text-decoration: none;
-  margin-left: 15px;
-  font-weight: bold;
-  transition: color 0.3s;
-}
-
-.nav-menu a:hover {
-  color: white;
-}
-
-
-    /* Toggle Box */
-.yt-toggle {
+.book-slide {
+  display: none;
   text-align: center;
-  margin-top: 20px;
 }
 
-.yt-box {
-  display: inline-block;
-  background-color: #FDFD95;
-  color: black;
-  padding: 15px 25px;
-  border-radius: 12px;
-  font-weight: bold;
+.book-slide.active {
+  display: block;
+}
+
+.bookshelf {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.book-row {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.book-row img {
+  width: 180px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
-  transition: transform 0.2s ease, background 0.3s;
 }
 
-.yt-box:hover {
-  background-color: #ffcc00;
-  transform: scale(1.05);
+.book-row img:hover {
+  transform: scale(1.08) translateY(-5px);
+  box-shadow: 0 0 25px white;
 }
 
-#yt-container {
-  max-width: 800px;   /* makes it wide */
-  height: 330px;      /* adjust height */
-  margin: 20px auto;
-  border-radius: 12px; /* slightly rounded corners */
-  overflow: hidden;    /* hides overflow */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+.summary-box {
+  margin-top: 30px;
+  background-color: rgba(0,0,0,0.8);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 16px;
+  line-height: 1.6;
+  color: white;
+  min-height: 120px;
 }
 
-#yt-container iframe,
-#yt-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* thumbnail fills without stretching weirdly */
+      
+.button-box {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.genre-title {
+    font-size: 24px;
+    color: #FDFD95;
+    text-align: center;      /* centers the text */
+    margin: 50px 0 20px 0;   /* top 50px, bottom 20px for spacing */
+    cursor: pointer;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.genre-title:hover {
+    color: #FFD700;          /* highlight color on hover */
+}
+
+/* Base book row styling */
+.book-row img {
+    width: 180px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+#fantasy-row img:hover { box-shadow:0 0 25px #3a9ad9; transform:scale(1.08); }
+#horror-row img:hover { box-shadow:0 0 25px #e63946; transform:scale(1.08); }
+#mystery-row img:hover { box-shadow:0 0 25px #6a0dad; transform:scale(1.08); }
+#romance-row img:hover { box-shadow:0 0 25px #ffb6c1; transform:scale(1.08); }
+#scifi-row img:hover { box-shadow:0 0 25px #40e0d0; transform:scale(1.08); }
+
+#library-overlay {
+  display: none;
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.6);
+  z-index: 999;
+}
+
+#clicked-book {
+  width: 250px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+  transition: transform 0.6s ease; /* smoother slide */
+  flex-shrink: 0;
+}
+
+#summary-panel {
+  display: none;
+  position: fixed;
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  max-width: 900px;
+  background: rgba(0,0,0,0.8);
+  border-radius: 12px;
+  padding: 20px;
+  z-index: 1000;
+  gap: 20px;
+  flex-direction: row;
+  align-items: flex-start;
 }
       
-
-#yt-thumbnail {
-  max-width: 560px;
-  width: 100%;
+#summary-text {
+  background-color: rgba(0,0,0,0.8);
+  color: white;
+  padding: 20px;
   border-radius: 10px;
+  flex: 1; /* take up remaining space */
+  min-height: 250px;
+  font-size: 18px;
+  line-height: 1.6;
+  overflow-y: auto; /* scroll if text too long */
+}
+
+#book-summary {
+  white-space: pre-wrap; /* preserve line breaks */
+}
+
+#summary-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+#summary-buttons button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-  transition: transform 0.3s;
+  font-weight: bold;
 }
+#read-btn { background-color: #3a9ad9; color: white; }
+#done-btn { background-color: #e63946; color: white; }
+      
 
-#yt-thumbnail:hover {
-  transform: scale(1.02);
-}
+    /* Toggle Box */
+    .yt-toggle {
+      text-align: center;
+      margin-top: 20px;
+    }
 
-.yt-hidden {
-  display: none;
-}
+    .yt-box {
+      display: inline-block;
+      background-color: #FDFD95;
+      color: black;
+      padding: 15px 25px;
+      border-radius: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.3s;
+    }
 
-  .highlight {
+    .yt-box:hover {
+      background-color: #ffcc00;
+      transform: scale(1.05);
+    }
+
+    #yt-container {
+      max-width: 800px;   /* makes it wide */
+      height: 330px;      /* adjust height */
+      margin: 20px auto;
+      border-radius: 12px; /* slightly rounded corners */
+      overflow: hidden;    /* hides overflow */
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+
+    #yt-container iframe,
+    #yt-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* thumbnail fills without stretching weirdly */
+    }
+      
+
+    #yt-thumbnail {
+      max-width: 560px;
+      width: 100%;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      transition: transform 0.3s;
+    }
+
+    #yt-thumbnail:hover {
+      transform: scale(1.02);
+    }
+
+    .yt-hidden {
+      display: none;
+    }
+
+    .highlight {
       background: rgba(253, 253, 149, 0.8); /* twenty percent transparent yellow aaaa */
       padding: 8px 16px;
       border-radius: 12px;
       display: inline-block;
     }
 
-/* smooth scroll when clicking links */
-html {
-  scroll-behavior: smooth;
-}
+/* smooth acrolling when clicking links */
+    html {
+     scroll-behavior: smooth;
+    }
       
       
      .video-container {
@@ -464,9 +621,7 @@ html {
                  <a href="#socials">Socials</a>
                  <a href="#songs">Songs</a>
                  <a href="#videos">Video</a>
-            </nav>
-
-                
+                </nav>      
             </div>
           </div>
         </td>
@@ -503,14 +658,14 @@ html {
               <p><strong>Favourite Subject</strong>: Biology, ICT : (Information and Communication Technology)</p>
               <p><strong>Personality Traits</strong>: Sarcastic, Light-hearted, Selectively Social</p>
               <p><strong>MBTI</strong>: INFJ-T</p>
-              <p><strong>Favourite Item</strong>: Money</p>
+              <p><strong>Favourite Food</strong>: Shakshuka</p>
             </div>
 
               
-            <!-- Profile Photo on the right -->
+            <!-- Pfp on the right -->
             <div class="profile-pic fade-in">
                  <img src="profile.png" alt="Faiqah's Profile Photo">
-                 <div class="hover-quote">my favourite food is shakshuka! my favourite colours are maroon, gold, and black</div>
+                 <div class="hover-quote">my favourite item is money.  my favourite colours are maroon, gold, and black</div>
             </div>
             </div>
 
@@ -526,7 +681,7 @@ html {
 <div class="divider"></div>
 
             
- <!-- Slideshow of my novels some manhwas but technically have novels sooooo -->
+ <!-- Slideshow of my novels some manhwas but technically have (web)novels sooooo -->
   <div class="slideshow-container" id="slideshow">
     <div class="mySlides active">
       <img src="img1.png" alt="Slideshow Image 1">
@@ -566,7 +721,7 @@ html {
     </div>
   </div>
 
- <!-- dk what this part here does but im too scared to delete it -->
+ <!-- genuinely forgot what this does but it does something-->
 
             
       <div style="margin-top: 20px; text-align: justify;">
@@ -578,6 +733,102 @@ html {
 
         </td>
       </tr>
+
+      <!-- 📚 Bookshelf Section -->
+<tr>
+  <td colspan="2" class="section fade-in">
+    <h2 id="bookshelf" class="section-title">📖 My Bookshelf 📖</h2>
+
+    <div class="bookshelf">
+      <!-- Row 1 -->
+      <div class="book-row">
+        <img src="img1.jpg" alt="Book 1" onclick="showSummary(0)">
+        <img src="img2.jpg" alt="Book 2" onclick="showSummary(1)">
+        <img src="img3.jpg" alt="Book 3" onclick="showSummary(2)">
+        <img src="img4.jpg" alt="Book 4" onclick="showSummary(3)">
+        <img src="img5.jpg" alt="Book 5" onclick="showSummary(4)">
+        <img src="img6.jpg" alt="Book 6" onclick="showSummary(5)">
+      </div>
+
+      <!-- Row 2 -->
+      <div class="book-row">
+        <img src="img7.jpg" alt="Book 7" onclick="showSummary(6)">
+        <img src="img8.jpg" alt="Book 8" onclick="showSummary(7)">
+        <img src="img9.jpg" alt="Book 9" onclick="showSummary(8)">
+        <img src="img10.jpg" alt="Book 10" onclick="showSummary(9)">
+        <img src="img11.jpg" alt="Book 11" onclick="showSummary(10)">
+        <img src="img12.jpg" alt="Book 12" onclick="showSummary(11)">
+      </div>
+    </div>
+
+  
+
+  <div id="bookSummary" class="summary-box">
+
+<!-- 📖 Library Section -->
+<tr>
+  <td colspan="2" class="section fade-in">
+    <h2 id="library" class="section-title">📚 The Library of Ruina 📚</h2>
+
+    <!-- Fantasy -->
+    <h3 class="genre-title" onclick="toggleGenre('fantasy')">Fantasy</h3>
+    <div class="book-row" id="fantasy-row">
+      <img src="fantasy1.png" onclick="showBookSummary(0)">
+      <img src="fantasy2.png" onclick="showBookSummary(1)">
+      <img src="fantasy3.png" onclick="showBookSummary(2)">
+      <img src="fantasy4.png" onclick="showBookSummary(3)">
+      <img src="fantasy5.png" onclick="showBookSummary(4)">
+    </div>
+
+    <!-- Horror -->
+    <h3 class="genre-title" onclick="toggleGenre('horror')">Horror</h3>
+    <div class="book-row" id="horror-row">
+      <img src="horror1.png" onclick="showBookSummary(5)">
+      <img src="horror2.png" onclick="showBookSummary(6)">
+      <img src="horror3.png" onclick="showBookSummary(7)">
+      <img src="horror4.png" onclick="showBookSummary(8)">
+    </div>
+
+    <!-- Mystery/Thriller -->
+    <h3 class="genre-title" onclick="toggleGenre('mystery')">Mystery/Thriller</h3>
+    <div class="book-row" id="mystery-row">
+      <img src="mystery1.png" onclick="showBookSummary(9)">
+      <img src="mystery2.png" onclick="showBookSummary(10)">
+      <img src="mystery3.png" onclick="showBookSummary(11)">
+    </div>
+
+    <!-- Romance -->
+    <h3 class="genre-title" onclick="toggleGenre('romance')">Romance</h3>
+    <div class="book-row" id="romance-row">
+      <img src="romance1.png" onclick="showBookSummary(12)">
+      <img src="romance2.png" onclick="showBookSummary(13)">
+      <img src="romance3.png" onclick="showBookSummary(14)">
+      <img src="romance4.png" onclick="showBookSummary(15)">
+    </div>
+
+    <!-- Sci-Fi -->
+    <h3 class="genre-title" onclick="toggleGenre('scifi')">Sci-Fi</h3>
+    <div class="book-row" id="scifi-row">
+      <img src="sci-fi1.png" onclick="showBookSummary(16)">
+      <img src="sci-fi2.png" onclick="showBookSummary(17)">
+      <img src="sci-fi3.png" onclick="showBookSummary(18)">
+    </div>
+  </td>
+</tr>
+
+<!-- Overlay & Summary panel -->
+<div id="library-overlay"></div>
+<div id="summary-panel">
+  <img id="clicked-book" src="" alt="Book Cover">
+  <div id="summary-text">
+    <p id="book-summary"></p>
+    <div id="summary-buttons">
+      <button id="read-btn">Read</button>
+      <button id="done-btn">Done</button>
+    </div>
+  </div>
+</div>
+        
 
       <!-- Socials Section -->
      <tr>
@@ -629,16 +880,15 @@ html {
 
               
         <!-- Toggle twst yt link -->
-         <div class="yt-toggle">
+   <div class="yt-toggle">
     <div id="yt-toggle-btn" class="yt-box highlight" onclick="toggleYT()" role="button" tabindex="0" aria-pressed="false">
                   ♫⋆｡♪ ₊˚♬ ﾟ.Twisted Wonderland Dorm Songs.ﾟ♬˚₊♪｡⋆♫
-          </div>
-         <div id="yt-container" class="yt-hidden" aria-hidden="true"></div>
-       </div>
-              
-          </div>
+    </div>
+      <div id="yt-container" class="yt-hidden" aria-hidden="true"></div>
+       </div>          
+        </div>
         </td>
-      </tr>
+       </tr>
 
       <!-- YouTube Section -->
       <tr>
@@ -694,7 +944,7 @@ html {
     showSlide(slideIndex);
     startSlideshow();
 
-    // Pause on hover (use addEventListener("sdkjan", stop slide
+    // Pause on hover (use addEventListener("sdwkwkwkwkan", stop slide
     slideshowContainer.addEventListener("mouseenter", stopSlideshow);
     slideshowContainer.addEventListener("mouseleave", startSlideshow);
   </script>
@@ -717,11 +967,11 @@ html {
 
 
 <script>
-  const aboutText1 = `Hello to whoever's reading this. My name is Faiqah. As I'm making this website, I'm a student in SMPIT Al-Haraki. I like reading, writing, drawing dresses—mostly creative stuff. I really enjoy watching Netflix series, but I find myself without the time or energy to watch them. I play games, mostly visual novel games. My current favourite is Twisted Wonderland. I watch YouTubers like Kubzscouts, Zyoxxx, ItsFunneh, Justin Han, and Doctor Mike. Though in my free time I mostly read. My favourite genre is adventure fantasy.`;
+  const aboutText1 = `Hello Bookworms. My name is Faiqah. As I'm making this website, I'm currently a student at Junior Highschool of SMPIT Al-Haraki. I like reading, writing, and fashion designing, specifically drawing dresses—mostly creative stuff. I really enjoy watching Fashion channels on TV & models on the runway. I play games, mostly visual novel games. My current favourite game is Twisted Wonderland. I watch YouTubers like Kubzscouts, Zyoxxx, ItsFunneh, Justin Han, and Doctor Mike. In my free time I mostly read. My favourite genre is adventure fantasy.`;
 
   const aboutText2 = `I read all kinds of things—novels, light novels, webnovels, graphic novels, novellas, short stories, anthologies, poetry, visual novels, audiobooks, comics, manhwas, manhuas, mangas, and fanfiction. Some of my favourite stories are: Lord of the Mysteries, Trash of The Count’s Family, I'm Not That Kind of Talent, I Became a God in a Horror Game, Got Dropped into a Ghost Story, Still Gotta Work Though, 66,666 Years: Advent of the Dark Mage, Perfume: The Story of a Murderer, Your Throne, Time-Limited Genius Dark Knight, The S-Classes That I Raised, The Academy’s Undercover Professor, A Villain’s Will To Live, and more.`;
 
-  const para1 = document.getElementById("aboutTyping1");
+    const para1 = document.getElementById("aboutTyping1");
   const para2 = document.getElementById("aboutTyping2");
 
   function typeText(text, element, callback) {
@@ -730,9 +980,9 @@ html {
       if (i < text.length) {
         element.textContent += text.charAt(i);
         i++;
-        setTimeout(typing, 57); // typing speed
+        setTimeout(typing, 57);
       } else if (callback) {
-        setTimeout(callback, 500); // pause before next
+        setTimeout(callback, 500);
       }
     }
     typing();
@@ -744,22 +994,91 @@ html {
     });
   }
 
-  // Trigger typing when first paragraph comes into view
   function isInViewport(el) {
     const rect = el.getBoundingClientRect();
     return rect.top < window.innerHeight && rect.bottom >= 0;
   }
 
   let triggered = false;
-  window.addEventListener("scroll", function () {
+  function triggerTypingIfVisible() {
     if (!triggered && isInViewport(para1)) {
       triggered = true;
       startTyping();
     }
-  });
+  }
+
+  // Trigger on scroll
+  window.addEventListener("scroll", triggerTypingIfVisible);
+  // Trigger on page load in case already visible
+  window.addEventListener("load", triggerTypingIfVisible);
 </script>
 
 
+<script>
+
+    let currentBook = 0;
+const bookSlides = document.querySelectorAll(".book-slide");
+const bookSummary = document.getElementById("bookSummary");
+
+const summaries = [
+  "Trash of The Counts Family. Cale Henituse, the “useless” noble heir from another universe, is lazy, carefree, and seemingly good for nothing. Everyone expects him to fail, but behind that charmingly idle exterior lies a genius quietly outsmarting nobles, scheming politicians, and anyone who underestimates him. While they laugh at the lout, Cale is secretly turning the game of power and intrigue to his favor—proving that being lazy doesn’t mean being weak… it means being dangerously underestimated.",
+    
+  "I'm not that kind of Talent. Deon Hardt is a sickly human who coughs up blood from receiving the tiniest bit of stress and gets sunburns from standing in the sun for ten minutes. But due to an unfortunate misunderstanding, he becomes “Demon Arut,” the notorious 0th corps commander of the demon army and the demon king's joker.",
+    
+  "I Became a God in a Horror Game. After losing his job, Bai Liu finds himself thrust into an unrelenting horror live-streaming game teeming with monstrous entities and players harboring lethal intentions. Initially perceived as an ordinary participant, Bai Liu's true nature gradually unfolds as he navigates the perilous game. His strategic brilliance and unyielding willpower lead him to ascend, culminating in the game's acknowledgment of his supremacy with a laurel crown and the declaration, “Welcome home.” ",
+    
+  "Got Dropped in a Ghost Story, Still Gotta Work Though. After attending a pop-up event for a modern fantasy media franchise, the protagonist finds themselves transmigrated into that very world. Instead of becoming a hero or adventurer, they land a job at the Ghost Story Specialist Corporation, Daydream Inc. With a dream job offering great benefits, excellent salary, and kind bosses, they quickly rise through the ranks using their knowledge of the world's ghost stories. However, despite the perks, they long to return home, finding themselves entangled in eerie and dangerous situations that come with the territory of their unique employment.",
+    
+  "66,666 Years: Advent of the Dark Mage. Once known as Diablo Volpir, a formidable dark mage, he was defeated and sealed away after a fierce battle against the Twelve Gods. Awakening 66,666 years later, he finds himself reincarnated as Jamie Welton, the newborn son of a noble family. Now, with only a fraction of his former power, Jamie embarks on a journey to reclaim his lost strength and exact revenge on the gods who betrayed him. Surrounded by a loving family and a peaceful environment, Jamie's path to vengeance is both a quest for power and a test of his humanity.",
+    
+  "Perfume: The Story of a Murderer. With his incredible talent for discerning scents, Jean-Baptiste Grenouille (Ben Whishaw) is one of 18th-century France's finest perfumers. He becomes obsessed with capturing an elusive aroma: the scent of young womanhood. His search takes a deadly turn, and when the bodies of 12 young females are found, panic breaks out, with families rushing to lock up their daughters.",
+    
+  "Your Throne. In the opulent Vasilios Empire, Lady Medea Solon is a formidable noblewoman with a singular ambition: to ascend to the throne. Her path seems clear as she vies for the Crown Prince's favor. However, her plans are thwarted when the Crown Prince chooses the innocent and unsuspecting Psyche Callista as his betrothed. Determined to reclaim her position, Medea resorts to drastic measures, leading to an unexpected and perilous body swap between the two women. Now inhabiting Psyche's body, Medea must navigate the complexities of her rival's life while plotting her next move in a world where power, deception, and ambition intertwine.",
+    
+  "Time-Limited Genius Dark Knight. Yoo Chan, diagnosed with a terminal illness, finds solace in the challenging RPG Inner Lunatic. Upon his death, he reincarnates as Nox von Reinharber, the game's notorious villain. Now, with his real-life time running out, Nox must navigate the game's treacherous world, facing formidable foes and unraveling dark secrets, all while racing against his impending demise. Will he rewrite his fate, or succumb to the game's cruel design?",
+    
+  "The S-Classes That I Raised. In a world where dungeons and monsters are real, Han Yoojin is an F-rank Hunter—considered weak and often overshadowed by his younger brother, Han Yoohyun, an S-rank prodigy. After a tragic event leads to his brother's death, Yoojin uses a wish granted by clearing a dungeon to reset his timeline. Now, with the knowledge of future events, he adopts the role of a 'Perfect Caregiver,' aiming to support and nurture the next generation of S-rank Hunters. However, his plans are complicated as these S-ranks exhibit unexpected behaviors, leading to humorous and heartfelt situations.",
+    
+  "The Academys Undercover Professor. A man from Earth must masquerade as a stranger he only just met. Well, when the catch is that he's been thrown into an entirely different world. Machiavelli and Gerrard are just one of the many names the new professor of Ceoren Academy uses to disguise his identity, and now he can add one more to his list, Professor Ludger Cherish. The real Ludger Cherish dies on board a train during a terrorist attack, making him the perfect target for a new identity",
+      
+  "A Villains Will to Live. The middle boss of the AAA-class game produced by the company. The villain who dies 999 times out of 1,000 times. Deculein.'You are going to die on almost every route.'Deculein, like all villains, inevitably dies.'First and foremost survival goal, Be what the game requires you to be'I'll have to survive even if it means twisting my fate if I am destined to die.",
+      
+  "Lord of the Mysteries. This is a is a journey of a person who wants to return home. Along this path there is a family, people wanting to take advantage of him and people who will support him even though he is not able to share his goals. Zhou Mingrui transmigrates into the body of Klein Moretti in a Victorian-era world filled with supernatural powers, ancient mysteries, and monstrous entities",
+];
+
+
+let bookSummaryElement = document.getElementById("bookSummary");
+let typingTimeout;
+
+function typeBookSummary(text) {
+  clearTimeout(typingTimeout);
+  bookSummaryElement.textContent = "";
+  let i = 0;
+
+  function typing() {
+    if (i < text.length) {
+      bookSummaryElement.textContent += text.charAt(i);
+      i++;
+      typingTimeout = setTimeout(typing, 60);
+    }
+  }
+
+  typing();
+}
+
+function showSummary(index) {
+  typeBookSummary(summaries[index]);
+}
+</script>
+
+<script>
+  // Run this once the page loads
+  window.onload = function() {
+    showSummary(0); // shows the first book summary
+  };
+</script>
+
+        
 <script>
     window.addEventListener("load", function () {
       const loader = document.getElementById("loader");
@@ -787,7 +1106,7 @@ html {
       "🚒 do a firefighter wiggle",
       "🍜 WOBBILY WIGGLY",
       "💧 its time to drink water"
-    ];
+    ]
 
     const dice = document.querySelector('.dice-img');
     const resultText = document.getElementById('fate-result');
@@ -862,8 +1181,108 @@ html {
   })();
 </script>
 
+<!-- your other scripts (slideshow, typing, etc.) -->
+
+<script>
+const bookData = [
+
+    //Fantasy
+  {img: 'fantasy1.png', summary: "Summary: Bilbo Baggins, a hobbit, embarks on an unexpected journey with a group of dwarves to reclaim treasure guarded by the dragon Smaug.                         Why Recommend?: It's a classic introduction to epic fantasy, and showcases rich world-building and character development.", link: 'https://example.com/hobbit'},
+  {img: 'fantasy2.png', summary: "Summary: Frodo Baggins and his companions set out to destroy the One Ring, facing numerous challenges to prevent the dark lord Sauron from conquering Middle-earth.                                                                                    Why Recommend?: A masterful blend of adventure, mythology, and profound themes of friendship and sacrifice.", link: 'https://example.com/lotr'},
+  {img: 'fantasy3.png', summary: "Summary: Noble families vie for control of the Iron Throne in a brutal, politically charged fantasy world.                                            Why Recommend?: Complex characters and intricate plots make for a gripping read.", link:'https://example.com/got'},
+  {img: 'fantasy4.png', summary: "Summary: Rand al'Thor discovers he's the Dragon Reborn, destined to face the Dark One in a battle that will determine the fate of the world.                           Why Recommend?: An expansive series with deep lore and a richly developed world.", link: 'https://example.com/wot'},
+  {img: 'fantasy5.png', summary: "Summary: A young boy discovers he's a wizard and attends Hogwarts School of Witchcraft and Wizardry, uncovering secrets about his past.                      Why Recommend: A heartwarming tale of friendship, bravery, and the battle between good and evil.", link: 'https://example.com/hp'},
+    
+    // 👻 Horror
+  {img: 'horror1.png', summary: "Summary: A woman suffering from postpartum depression is confined to a room, where she becomes obsessed with the wallpaper, believing there's something trapped inside.                                                                               Why Recommend?: A powerful exploration of mental illness and the oppression of women.", link: 'https://example.com/yellowwallpaper'},
+  {img: 'horror2.png', summary: "Summary: A reimagining of Lovecraft's story, focusing on a Black protagonist who encounters cosmic horrors in 1920s Harlem.                                                      Why Recommend?: A fresh take on cosmic horror with social commentary.", link: 'https://example.com/blacktom'},
+  {img: 'horror3.png', summary: "Summary: A family moves to a rural town, where they discover a cemetery with the ability to bring things back to life, leading to tragic consequences.                                                Why Recommend?: A chilling tale that delves into grief and the consequences of defying nature.", link: 'https://example.com/petsematary'},
+  {img: 'horror4.png', summary: "Summary: A nameless protagonist joins a scalp-hunting expedition in the American West, encountering violence and moral ambiguity.                                                      Why Recommend?: A brutal and poetic examination of violence and the human condition.", link: 'https://example.com/bloodmeridian'},
+
+  // 🕵️ Mystery/Thriller
+  {img: 'mystery1.png', summary: "Summary: Ten strangers are invited to an island, where they are systematically killed off, and the survivors must figure out who the murderer is.                                                Why Recommend?: A masterful example of suspense and misdirection.", link: 'https://example.com/andthentherewerenone'},
+  {img: 'mystery2.png', summary: "Summary: A woman's disappearance reveals dark secrets about her marriage and the media's role in shaping public perception.                                                                             Why Recommend?: A sharp critique of media sensationalism and complex character dynamics.", link: 'https://example.com/gonegirl'},
+  {img: 'mystery3.png', summary: "Summary: Two women share a dark secret, and their intertwined lives lead to a thrilling and twisted narrative.                                                                                 Why Recommend?: A gripping psychological thriller with unexpected twists.", link: 'https://example.com/whatliesbetweenus'},
+
+  // 💖 Romance
+  {img: 'romance1.png', summary: "Summary: Set in a fictional English town, the novel follows the lives of its residents, exploring themes of marriage, idealism, and societal expectations.                Why Recommend?: A richly detailed narrative that delves into the complexities of human relationships.", link: 'https://example.com/middlemarch'},
+  {img: 'romance2.png', summary: "Summary: Pereshati Jahardt, a noblewoman, is betrayed and murdered by her own family over inheritance. Mysteriously, she is resurrected and sent back in time before her death. Determined to protect herself and her wealth, she enters a one-year contract marriage with the enigmatic Grand Duke Therdeo Lapileon.                    Why Recommend?: A slow-burn romance perfect to those who enjoy fluff and angsts.", link: 'https://example.com/inlaws'},
+  {img: 'romance3.png', summary: "Summary: Penelope Eckart, a smart and strategic young woman who suddenly finds herself trapped inside an otome game as the villainess. The story focuses on her intelligence, problem-solving, and emotional growth as she struggles to avoid death, win allies, and uncover hidden secrets behind the game’s world.                                         Why Recommend?: Clever twist on the classic “trapped in an otome game” trope. Instead of the story being predictable or light, it’s full of strategy, suspense, and emotional depth.", link: 'https://example.com/deathvillainess'},
+  {img: 'romance4.png', summary: "Summary: A game developer who wakes up as Therese, the villainess in her own reverse harem game called God's Play. A channel manager named Ozworld presents her with a quest: achieve the 'True Ending' by forming a connection with one of the four male protagonists. However, Therese's character is designed with poor compatibility with all the male leads, leading to numerous death routes in the original game.                                      Why Recommend?: A fun mix of romance, strategy, and self-aware humour. The villainess actively outsmarts the game’s “bad endings,” making it satisfying and clever, plus the reverse harem dynamic adds drama and tension without being overly cliché.", link: 'https://example.com/bjvillainess'},
+
+  // 🚀 Sci-Fi
+  {img: 'sci-fi1.png', summary: "Summary: A visionary story that explores humanity’s relationship with technology, space, and the unknown. Why Recommend?: Thought-provoking and thrilling, perfect for fans of futuristic adventures.", link: 'https://example.com/scifi1'},
+  {img: 'sci-fi2.png', summary: "Summary: A man is transformed into a powerful entity in space, facing challenges and growth in an alien environment. Why Recommend?: A unique take on transformation and survival in the cosmos.", link: 'https://example.com/space-monster'},
+  {img: 'sci-fi3.png', summary: "Summary: In a future society divided by color-coded classes, a lowborn man infiltrates the elite to bring about revolution. Why Recommend?: A fast-paced and thought-provoking tale of rebellion and societal structures.", link: 'https://example.com/redrising'},
+  {img: 'scifi4.png', summary: "Summary: An astronaut wakes up alone on a spaceship with no memory, tasked with saving Earth from an extinction-level threat. Why Recommend?: A compelling mix of science, mystery, and human resilience.", link: 'https://example.com/hailmary'}
+
+];
+
+const overlay = document.getElementById('library-overlay');
+const panel = document.getElementById('summary-panel');
+const clickedBook = document.getElementById('clicked-book');
+const summaryText = document.getElementById('book-summary');
+const readBtn = document.getElementById('read-btn');
+const doneBtn = document.getElementById('done-btn');
+
+function typeText(text, element, callback){
+  element.textContent = '';
+  let i=0;
+  function typing(){
+    if(i<text.length){
+      element.textContent += text.charAt(i);
+      i++;
+      setTimeout(typing, 25); // typing speed
+    } else if(callback) callback();
+  }
+  typing();
+}
+
+function showBookSummary(index){
+  const book = bookData[index];
+  if(!book) return;
+
+  clickedBook.src = book.img;
+  overlay.style.display = 'block';
+  panel.style.display = 'flex';
+  clickedBook.style.transform = 'translateX(-80px)';
+
+  typeText(book.summary, summaryText, () => {
+    readBtn.onclick = () => window.open(book.link,'_blank');
+    doneBtn.onclick = closeSummary;
+  });
+}
+
+function closeSummary(){
+  overlay.style.display = 'none';
+  panel.style.display = 'none';
+  clickedBook.style.transform = 'translateX(0)';
+  summaryText.textContent = '';
+}
+
+function toggleGenre(genre){
+  const row = document.getElementById(`${genre}-row`);
+  if(!row) return;
+  row.style.display = row.style.display === 'none' ? 'flex' : 'none';
+}
+</script>
+
 
     
+<script>
+
+
+// Summaries and links
+const summaries=[...];
+
+// Typing function
+function typeSummary(text, element, callback){ ... }
+
+// Open summary panel
+function openSummary(bookImg,index){ ... }
+</script>
+
     
 </body>
 </html>
+    
