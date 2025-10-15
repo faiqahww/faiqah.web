@@ -71,6 +71,95 @@
       100% { transform: rotate(360deg); }
     }
 
+      /* WEBSITE POPUP IM GETTING THAT GRADE BABYYY */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.8s ease;
+  box-shadow: 0 0 20px maroon, 0 0 40px maroon, 0 0 60px maroon;
+  transition: box-shadow 0.3s ease-in-out;
+
+}
+
+.popup-box {
+  background: transparent;
+  color: maroon;
+  font-family: "Georgia", serif;
+  padding: 40px;
+  border: 2px solid maroon;
+  border-radius: 20px;
+  box-shadow: 0 0 40px maroon, 0 0 60px maroon, 0 0 80px maroon;
+  animation: popUp 0.6s ease;
+
+  width: min(700px, 90%);
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.popup-box h1 {
+  font-size: 2rem;
+  margin: 0 0 12px;
+  text-align: center;
+  width: 100%;
+}
+
+.popup-box p {
+  font-size: 1rem;
+  color: #b03030;
+  margin: 0 auto 20px;
+  line-height: 1.6;
+  text-align: center;
+  max-width: 560px;
+  width: 100%;
+  box-sizing: border-box;
+  display: block;
+}
+
+.teacher-message {
+  font-size: 14px;
+  color: maroon;
+  margin-top: 5px;
+  text-align: center;
+}
+
+.popup-box button {
+  background-color: maroon;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.popup-box button:hover {
+  background-color: #800000;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes popUp {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
     .profile-pic {
       position: relative;
       display: inline-block;
@@ -139,7 +228,29 @@
       text-align: center; 
         }
 
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
 
+.popup-box {
+  background: black;
+  padding: 25px 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px maroon, 0 0 30px maroon, 0 0 50px maroon;
+
+}
+
+
+      
     .nav-menu {
       position: fixed;
       top: 10px;
@@ -600,11 +711,87 @@
       margin-bottom: 30px;
       color: #FDFD95;
     }
+
+.games-section {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.games-container {
+  display: flex;
+  flex-wrap: wrap;          /* allow multiple rows if needed */
+  justify-content: center;  /* center horizontally */
+  gap: 20px;                /* spacing between games */
+}
+
+.game-of-choice {
+  background-color: rgba(253, 253, 149, 0.6);
+  color: black;
+  border-radius: 12px;
+  padding: 15px;
+  width: 200px;             /* fixed width for uniformity */
+  transition: transform 0.2s ease, background 0.3s;
+}
+
+.game-of-choice:hover {
+  transform: scale(1.05);
+  background-color: #ffcc00;
+}
+
+.game-img {
+  width: 120px;
+  cursor: pointer;
+  margin: 10px 0;
+  border-radius: 10px;
+}
+
+.games-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.game-of-choice {
+  width: 120px;
+  padding: 10px;
+  text-align: center;
+  background: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.game-of-choice:hover {
+  transform: scale(1.05);
+}
+
+.game-img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+      
+      
   </style>
 </head>
 
 <body>
 
+<!-- 🌸 Welcome Popup -->
+<div id="welcomePopup" class="popup-overlay">
+  <div class="popup-box">
+    <h1>Welcome to my Website!</h1>
+    <p class="teacher-message"><br>This is the best assigned homework I've ever gotten,<br> I enjoyed making this website very much<br>Thank you Miss Ana! :3<br>If this is being shown in class, hi dekels! do your best :)</p>
+    <button onclick="closePopup()">Would you like to continue?</button>
+  </div>
+</div>
+
+
+    
   <table>
     <tbody>
       <tr>
@@ -621,7 +808,11 @@
                  <a href="#socials">Socials</a>
                  <a href="#songs">Songs</a>
                  <a href="#videos">Video</a>
-                </nav>      
+                <br>
+                <a href="#bookshelf">Bookshelf</a>
+                <a href="#library">Library</a>
+                <a href="#minigames">Mini Games</a>
+                </nav>
             </div>
           </div>
         </td>
@@ -655,8 +846,8 @@
               <p><strong>Hobby</strong>: Reading, Writing, Designing</p>
               <p><strong>Dream Job</strong>: Unemployment, but disgustingly rich</p>
               <p><strong>Grade & Class</strong>: 9th Grade Class An-Nasr "The Victory" or "The Help"</p>
-              <p><strong>Favourite Subject</strong>: Biology, ICT : (Information and Communication Technology)</p>
-              <p><strong>Personality Traits</strong>: Sarcastic, Light-hearted, Selectively Social</p>
+              <p><strong>Favourite Subject</strong>: Biology, ICT, Designing : (Information and Communication Technology </p>
+              <p><strong>Personality Traits</strong>: Light-hearted, Selectively Social, Sarcastic, A Clotheshorse, Voguish, Courteous to elders, and Imaginative. </p>
               <p><strong>MBTI</strong>: INFJ-T</p>
               <p><strong>Favourite Food</strong>: Shakshuka</p>
             </div>
@@ -671,14 +862,97 @@
 
 <div class="divider"></div>
 
-            
-            <div class="dice-of-fate">
-                 <h3>🎲 Roll the Dice of Fate</h3>
-                 <img src="dice.png" alt="Dice" class="dice-img" onclick="rollFate()">
-             <p <strong id="fate-result">Click the dice to decide your destiny..... </strong> </p>
-            </div>
 
+<div id="minigames" class="games-section">
+  <h2 class="section-title"> Mini Games</h2>
+
+  <div id="games-menu" class="games-container">
+      
+ <!-- GAME SCREENS -->
+
+<!-- Dice -->
+<div id="games-menu" class="games-menu" style="display:grid; grid-template-columns:repeat(5, 1fr); gap:20px; text-align:center; max-width:1000px; margin:0 auto;">
+
+  <!-- Dice -->
+  <div class="game-of-choice" onclick="showGame('game-dice')">
+    🎲 Dice of Fate
+    <img src="dice.png" class="game-img dice-img" onclick="rollFate()" alt="Dice of Fate">
+  </div>
+
+  <!-- Tic Tac Toe -->
+    <div class="game-of-choice">
+      <a href="https://playtictactoe.org/" target="_blank">
+        ⭕❌ Tic Tac Toe
+        <img src="tictactoe.png" class="game-img" alt="Tic Tac Toe">
+      </a>
+    </div>
+
+  <!-- Flappy Bird -->
+    <div class="game-of-choice">
+      <a href="https://flappybird.io/" target="_blank">
+        🐦 Flappy Bird
+        <img src="flappy.png" class="game-img">
+      </a>
+    </div>
+ <!-- Hearts & Spades -->
+    <div class="game-of-choice">
+      <a href="https://cardgames.io/hearts/" target="_blank">
+        ♥♠ Hearts & Spades
+        <img src="hearts.png" class="game-img" alt="Hearts & Spades">
+      </a>
+    </div>
+
+    <!-- Poker -->
+    <div class="game-of-choice">
+      <a href="https://cardgames.io/poker/" target="_blank">
+        🃏 Poker
+        <img src="poker.png" class="game-img" alt="Poker">
+      </a>
+    </div>
+
+    <!-- Solitaire -->
+    <div class="game-of-choice">
+      <a href="https://cardgames.io/solitaire/" target="_blank">
+        🂡 Solitaire
+        <img src="solitaire.png" class="game-img" alt="Solitaire">
+      </a>
+    </div>
+
+    <!-- Checkers -->
+    <div class="game-of-choice">
+      <a href="https://cardgames.io/checkers/" target="_blank">
+        🔴⚫ Checkers
+        <img src="checkers.png" class="game-img" alt="Checkers">
+      </a>
+    </div>
+
+    <!-- Chess -->
+    <div class="game-of-choice">
+      <a href="https://www.chess.com/play" target="_blank">
+        ♔♟ Chess
+        <img src="chess.png" class="game-img" alt="Chess">
+      </a>
+    </div>
+
+    <!-- Uno -->
+    <div class="game-of-choice">
+      <a href="https://play.unofreak.com/" target="_blank">
+        🔴🟢🟡🔵 Uno
+        <img src="uno.png" class="game-img" alt="Uno">
+      </a>
+    </div>
+
+    <!-- Snake -->
+    <div class="game-of-choice">
+      <a href="https://playsnake.org/" target="_blank">
+        🐍 Snake Game
+        <img src="snake.png" class="game-img" alt="Snake Game">
+      </a>
+    </div>
+  
+</div>
 <div class="divider"></div>
+
 
             
  <!-- Slideshow of my novels some manhwas but technically have (web)novels sooooo -->
@@ -1090,38 +1364,55 @@ function showSummary(index) {
     });
   </script>
 
+<!-- Dice of Fate Result Popup -->
+<div id="fate-popup" class="popup-overlay" style="display:none;">
+  <div class="popup-box" style="text-align:center;">
+    <h2>🎲 Dice of Fate 🎲</h2>
+    <p id="fate-result" style="font-size:18px; margin:15px 0;"></p>
+    <button onclick="closeFatePopup()">Close</button>
+  </div>
+</div>
+      
 
 <script>
-  function rollFate() {
-    const fates = [
-      "😴 a 15 hour nap (very healthy)",
-      "🧑‍🔬 watch the 10th doctor",
-      "📱 doomscroll tiktok",
-      "🍴 ingest metal",
-      "☕ gonorrhea from coffee",
-      "💼 get a j*b",
-      "🐉 watch httyd eternity edits",
-      "🐵 goon",
-      "🪙 play monkeys paw with friend(s)",
-      "🚒 do a firefighter wiggle",
-      "🍜 WOBBILY WIGGLY",
-      "💧 its time to drink water"
-    ]
+function rollFate() {
+  const fates = [
+    "😴 a 15 hour nap (very healthy)",
+    "🧑‍🔬 watch the 10th doctor",
+    "📱 doomscroll tiktok",
+    "🍴 ingest metal",
+    "☕ gonorrhea from coffee",
+    "💼 get a j*b",
+    "🐉 watch httyd eternity edits",
+    "🐵 goon",
+    "🪙 play monkeys paw with friend(s)",
+    "🚒 do a firefighter wiggle",
+    "🍜 WOBBILY WIGGLY",
+    "💧 its time to drink water"
+  ];
 
-    const dice = document.querySelector('.dice-img');
-    const resultText = document.getElementById('fate-result');
+  const dice = document.querySelector('.dice-img');
+  const resultText = document.getElementById('fate-result');
+  const popup = document.getElementById('fate-popup');
 
-    // Reset spain without the a animation
-    dice.classList.remove('spin');
-    void dice.offsetWidth; // thingy to restart animation
-    dice.classList.add('spin');
+  // Reset animation
+  dice.classList.remove('spin');
+  void dice.offsetWidth; // restart animation
+  dice.classList.add('spin');
 
-    // Wait for spin before u get the resultsss omg finally we're ENDING
-    setTimeout(() => {
-      const result = fates[Math.floor(Math.random() * fates.length)];
-      resultText.textContent = result;
-    }, 800); 
-  }
+  // Show popup after spin
+  setTimeout(() => {
+    const result = fates[Math.floor(Math.random() * fates.length)];
+    resultText.textContent = result;
+    popup.style.display = 'flex';
+  }, 800);
+}
+
+// Close popup
+function closeFatePopup() {
+  document.getElementById('fate-popup').style.display = 'none';
+}
+
 </script>
 
 
@@ -1189,7 +1480,7 @@ const bookData = [
     //Fantasy
   {img: 'fantasy1.png', summary: "Summary: Bilbo Baggins, a hobbit, embarks on an unexpected journey with a group of dwarves to reclaim treasure guarded by the dragon Smaug.                         Why Recommend?: It's a classic introduction to epic fantasy, and showcases rich world-building and character development.", link: 'https://example.com/hobbit'},
   {img: 'fantasy2.png', summary: "Summary: Frodo Baggins and his companions set out to destroy the One Ring, facing numerous challenges to prevent the dark lord Sauron from conquering Middle-earth.                                                                                    Why Recommend?: A masterful blend of adventure, mythology, and profound themes of friendship and sacrifice.", link: 'https://example.com/lotr'},
-  {img: 'fantasy3.png', summary: "Summary: Noble families vie for control of the Iron Throne in a brutal, politically charged fantasy world.                                            Why Recommend?: Complex characters and intricate plots make for a gripping read.", link:'https://example.com/got'},
+  {img: 'fantasy3.png', summary: "Summary: Nine noble families wage war against each other in order to gain control over the mythical land of Westeros. Meanwhile, a force is rising after millenniums and threatens the existence of living men.                                            Why Recommend?: Complex characters and intricate plots make for a gripping read.", link:'https://example.com/got'},
   {img: 'fantasy4.png', summary: "Summary: Rand al'Thor discovers he's the Dragon Reborn, destined to face the Dark One in a battle that will determine the fate of the world.                           Why Recommend?: An expansive series with deep lore and a richly developed world.", link: 'https://example.com/wot'},
   {img: 'fantasy5.png', summary: "Summary: A young boy discovers he's a wizard and attends Hogwarts School of Witchcraft and Wizardry, uncovering secrets about his past.                      Why Recommend: A heartwarming tale of friendship, bravery, and the battle between good and evil.", link: 'https://example.com/hp'},
     
@@ -1266,13 +1557,10 @@ function toggleGenre(genre){
   row.style.display = row.style.display === 'none' ? 'flex' : 'none';
 }
 </script>
-
-
     
 <script>
 
-
-// Summaries and links
+// Summaries and links FINALLY IM FREEEE
 const summaries=[...];
 
 // Typing function
@@ -1282,7 +1570,12 @@ function typeSummary(text, element, callback){ ... }
 function openSummary(bookImg,index){ ... }
 </script>
 
-    
+<script>
+function closePopup() {
+  document.getElementById("welcomePopup").style.display = "none";
+}
+</script>
+
+
 </body>
 </html>
-    
